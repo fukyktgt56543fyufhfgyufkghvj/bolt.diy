@@ -348,6 +348,13 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
         {chatStarted && <ClientOnly>{() => <Menu />}</ClientOnly>}
         <div className="flex flex-col lg:flex-row overflow-y-auto w-full h-full">
           <div className={classNames(styles.Chat, 'flex flex-col flex-grow lg:min-w-[var(--chat-min-width)] h-full')}>
+            {!chatStarted && (
+              <div id="intro" className="mt-[14vh] mb-3 max-w-2xl mx-auto text-center px-4 lg:px-0">
+                <p className="uppercase tracking-widest text-xs text-bolt-elements-textSecondary mb-2">introducing fusion</p>
+                <h1 className="text-4xl lg:text-6xl font-bold text-bolt-elements-textPrimary mb-2">What should we build?</h1>
+                <p className="text-sm lg:text-base text-bolt-elements-textSecondary">using your existing design & code context</p>
+              </div>
+            )}
             <StickToBottom
               className={classNames('pt-6 px-2 sm:px-6 relative', {
                 'h-full flex flex-col modern-scrollbar': chatStarted,
