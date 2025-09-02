@@ -74,6 +74,13 @@ body::before {
     radial-gradient(1.5px 1.5px at 30% 80%, rgba(255,255,255,0.6), transparent 60%),
     radial-gradient(1px 1px at 70% 85%, rgba(255,255,255,0.5), transparent 60%);
   opacity: 0.35;
+  animation: star-drift 60s linear infinite;
+}
+
+@keyframes star-drift {
+  0% { transform: translateY(0px); opacity: 0.35; }
+  50% { transform: translateY(10px); opacity: 0.45; }
+  100% { transform: translateY(0px); opacity: 0.35; }
 }
 
 /* Force dark minimalist variables across themes (override order) */
