@@ -470,7 +470,35 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
             </StickToBottom>
             <div className="flex flex-col justify-center">
               {!chatStarted && (
-                <div className="flex justify-center gap-2">
+                <div className="text-center text-bolt-elements-textSecondary text-sm mt-2">
+                  <span className="opacity-80">or import from</span>
+                  <button
+                    className="inline-flex items-center gap-1 ml-2 mr-1 rounded-full border border-bolt-elements-borderColor bg-bolt-elements-background-depth-2 px-2 py-0.5 text-xs hover:text-bolt-elements-textPrimary"
+                    onClick={() => {
+                      window.open(
+                        'https://www.figma.com/community/plugin/747985167520967365/builder-io-ai-powered-figma-to-code-react-vue-tailwind-more',
+                        '_blank',
+                        'noopener,noreferrer',
+                      );
+                    }}
+                  >
+                    Figma
+                  </button>
+                  <button
+                    className="inline-flex items-center gap-1 ml-1 rounded-full border border-bolt-elements-borderColor bg-bolt-elements-background-depth-2 px-2 py-0.5 text-xs hover:text-bolt-elements-textPrimary"
+                    onClick={() => {
+                      const url = window.prompt('Enter GitHub repository URL to import');
+                      if (url) {
+                        window.location.href = `/git?url=${encodeURIComponent(url)}`;
+                      }
+                    }}
+                  >
+                    GitHub
+                  </button>
+                </div>
+              )}
+              {!chatStarted && (
+                <div className="flex justify-center gap-2 mt-4">
                   {ImportButtons(importChat)}
                   <GitCloneButton importChat={importChat} />
                 </div>
