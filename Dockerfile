@@ -57,7 +57,7 @@ RUN mkdir -p /root/.config/.wrangler && \
 
 RUN pnpm run build
 
-CMD [ "pnpm", "run", "dockerstart"]
+CMD ["sh", "-c", "vite preview --port $PORT"]
 
 # Development image
 FROM base AS bolt-ai-development
