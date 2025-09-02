@@ -18,6 +18,9 @@ export default defineConfig((config) => {
     },
     build: {
       target: 'esnext',
+      },
+server: {
+  allowedHosts: ['bolt-diy-3llr.onrender.com'], // <- AJOUTE CE BLOC ICI
     },
     plugins: [
       nodePolyfills({
