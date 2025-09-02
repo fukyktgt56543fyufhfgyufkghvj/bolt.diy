@@ -16,15 +16,15 @@ export default defineConfig((config) => {
     define: {
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
     },
-    build: {
-      target: 'esnext',
-      },
+build: {
+  target: 'esnext',
+},
 server: {
   allowedHosts: ['bolt-diy-3llr.onrender.com'], // <- AJOUTE CE BLOC ICI
-    },
-    plugins: [
-      nodePolyfills({
-        include: ['buffer', 'process', 'util', 'stream'],
+},
+plugins: [
+  nodePolyfills({
+    include: ['buffer', 'process', 'util', 'stream'],
         globals: {
           Buffer: true,
           process: true,
