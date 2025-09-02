@@ -83,6 +83,25 @@ body::before {
   100% { transform: translateY(0px); opacity: 0.35; }
 }
 
+/* Soft animated gradient haze */
+body::after {
+  content: '';
+  position: fixed;
+  inset: -20% -10% -20% -10%;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(40% 30% at 20% 20%, rgba(147,51,234,0.25), transparent 60%),
+              radial-gradient(35% 25% at 80% 30%, rgba(59,130,246,0.22), transparent 60%),
+              radial-gradient(30% 25% at 50% 80%, rgba(236,72,153,0.18), transparent 65%);
+  filter: blur(60px);
+  animation: haze-drift 24s ease-in-out infinite alternate;
+}
+
+@keyframes haze-drift {
+  0% { transform: translateY(0) translateX(0) scale(1); }
+  100% { transform: translateY(-10px) translateX(6px) scale(1.03); }
+}
+
 /* Force dark minimalist variables across themes (override order) */
 :root,
 :root[data-theme='dark'],
