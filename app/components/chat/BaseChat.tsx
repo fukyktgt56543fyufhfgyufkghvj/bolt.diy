@@ -458,6 +458,36 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
                 />
               </div>
             </StickToBottom>
+            {!chatStarted && (
+              <div className="flex flex-wrap justify-center gap-2 mt-3">
+                <button
+                  className="px-3 py-1.5 rounded-full border border-bolt-elements-borderColor bg-bolt-elements-background-depth-2 text-sm text-bolt-elements-textPrimary"
+                  onClick={() => {
+                    const url = window.prompt('Enter Git repository URL');
+                    if (url) window.location.href = `/git?url=${encodeURIComponent(url)}`;
+                  }}
+                >
+                  Connect a repo
+                </button>
+                <button
+                  className="px-3 py-1.5 rounded-full border border-bolt-elements-borderColor bg-bolt-elements-background-depth-2 text-sm text-bolt-elements-textPrimary"
+                  onClick={() => {
+                    window.open(
+                      'https://www.figma.com/community/plugin/747985167520967365/builder-io-ai-powered-figma-to-code-react-vue-tailwind-more',
+                      '_blank',
+                    );
+                  }}
+                >
+                  Figma Import
+                </button>
+                <button className="px-3 py-1.5 rounded-full border border-bolt-elements-borderColor bg-bolt-elements-background-depth-2 text-sm text-bolt-elements-textPrimary">
+                  MCP Servers
+                </button>
+                <button className="px-3 py-1.5 rounded-full border border-bolt-elements-borderColor bg-bolt-elements-background-depth-2 text-sm text-bolt-elements-textPrimary">
+                  Get Extension
+                </button>
+              </div>
+            )}
           </div>
           {chatStarted && (
             <ClientOnly>
