@@ -19,9 +19,12 @@ export default defineConfig((config) => {
 build: {
   target: 'esnext',
 },
-server: {
-  allowedHosts: ['bolt-diy-3llr.onrender.com'], // <- AJOUTE CE BLOC ICI
-},
+server: process.env.NODE_ENV !== 'production' ? {
+  host: true,
+  port: 5173,
+  strictPort: true,
+  allowedHosts: 'all',
+} : undefined,
 plugins: [
   nodePolyfills({
     include: ['buffer', 'process', 'util', 'stream'],
