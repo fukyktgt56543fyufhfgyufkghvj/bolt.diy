@@ -2,6 +2,7 @@
  * @ts-nocheck
  * Preventing TS checks with files presented in the video for a better presentation.
  */
+/* eslint-disable prettier/prettier */
 import type { JSONValue, Message } from 'ai';
 import React, { type RefCallback, useEffect, useState } from 'react';
 import { ClientOnly } from 'remix-utils/client-only';
@@ -350,19 +351,10 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
         <div className="flex flex-col lg:flex-row overflow-y-auto w-full h-full">
           <div className={classNames(styles.Chat, 'flex flex-col flex-grow lg:min-w-[var(--chat-min-width)] h-full')}>
             {!chatStarted && (
-              <div
-                id="intro"
-                className={classNames('mt-[14vh] mb-3 max-w-2xl mx-auto text-center px-4 lg:px-0', styles.GlassHero)}
-              >
-                <p className="uppercase tracking-widest text-xs text-bolt-elements-textSecondary mb-2">
-                  introducing fusion
-                </p>
-                <h1 className="text-4xl lg:text-6xl font-bold text-bolt-elements-textPrimary mb-2">
-                  Your app starts here
-                </h1>
-                <p className="text-sm lg:text-base text-bolt-elements-textSecondary">
-                  Design, generate and ship — with your existing code context
-                </p>
+              <div id="intro" className={classNames('mt-[14vh] mb-3 max-w-2xl mx-auto text-center px-4 lg:px-0', styles.GlassHero)}>
+                <p className="uppercase tracking-widest text-xs text-bolt-elements-textSecondary mb-2">introducing fusion</p>
+                <h1 className="text-4xl lg:text-6xl font-bold text-bolt-elements-textPrimary mb-2">Your app starts here</h1>
+                <p className="text-sm lg:text-base text-bolt-elements-textSecondary">Design, generate and ship — with your existing code context</p>
                 <div className={classNames('mt-4', styles.TrustLogoRow)}>
                   <span className="text-xs text-bolt-elements-textTertiary">Trusted by</span>
                   <div className={styles.TrustLogos}>
@@ -492,10 +484,9 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
                     className="px-3 py-1.5 rounded-full border border-bolt-elements-borderColor bg-bolt-elements-background-depth-2 text-sm text-bolt-elements-textPrimary"
                     onClick={() => {
                       const url = window.prompt('Enter Git repository URL');
-
-                      if (url) {
-                        window.location.href = `/git?url=${encodeURIComponent(url)}`;
-                      }
+                    if (url) {
+                      window.location.href = `/git?url=${encodeURIComponent(url)}`;
+                    }
                     }}
                   >
                     Connect a repo
@@ -587,9 +578,7 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
                       <h4>Short on time?</h4>
                       <p>We can scaffold your app and wire integrations for you.</p>
                     </div>
-                    <button className="px-3 py-1.5 rounded-full border border-bolt-elements-borderColor bg-bolt-elements-background-depth-2 text-sm text-bolt-elements-textPrimary">
-                      Talk to us
-                    </button>
+                    <button className="px-3 py-1.5 rounded-full border border-bolt-elements-borderColor bg-bolt-elements-background-depth-2 text-sm text-bolt-elements-textPrimary">Talk to us</button>
                   </div>
                 </section>
               </div>
@@ -598,11 +587,7 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
           {chatStarted && (
             <ClientOnly>
               {() => (
-                <Workbench
-                  chatStarted={chatStarted}
-                  isStreaming={isStreaming}
-                  setSelectedElement={setSelectedElement}
-                />
+                <Workbench chatStarted={chatStarted} isStreaming={isStreaming} setSelectedElement={setSelectedElement} />
               )}
             </ClientOnly>
           )}
