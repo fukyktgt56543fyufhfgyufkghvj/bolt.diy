@@ -2,6 +2,7 @@
  * @ts-nocheck
  * Preventing TS checks with files presented in the video for a better presentation.
  */
+/* eslint-disable prettier/prettier */
 import type { JSONValue, Message } from 'ai';
 import React, { type RefCallback, useEffect, useState } from 'react';
 import { ClientOnly } from 'remix-utils/client-only';
@@ -14,11 +15,7 @@ import { getApiKeysFromCookies } from './APIKeyManager';
 import Cookies from 'js-cookie';
 import * as Tooltip from '@radix-ui/react-tooltip';
 import styles from './BaseChat.module.scss';
-import { ImportButtons } from '~/components/chat/chatExportAndImport/ImportButtons';
-import { ExamplePrompts } from '~/components/chat/ExamplePrompts';
-import GitCloneButton from './GitCloneButton';
 import type { ProviderInfo } from '~/types/model';
-import StarterTemplates from './StarterTemplates';
 import type { ActionAlert, SupabaseAlert, DeployAlert, LlmErrorAlertType } from '~/types/actions';
 import DeployChatAlert from '~/components/deploy/DeployAlert';
 import ChatAlert from './ChatAlert';
@@ -33,6 +30,8 @@ import { ChatBox } from './ChatBox';
 import type { DesignScheme } from '~/types/design-scheme';
 import type { ElementInfo } from '~/components/workbench/Inspector';
 import LlmErrorAlert from './LLMApiAlert';
+import BackgroundRays from '~/components/ui/BackgroundRays';
+import GlassParticles from '~/components/ui/GlassParticles';
 
 const TEXTAREA_MIN_HEIGHT = 76;
 
@@ -104,7 +103,7 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
       enhancePrompt,
       sendMessage,
       handleStop,
-      importChat,
+      importChat: _importChat,
       exportChat,
       uploadedFiles = [],
       setUploadedFiles,
@@ -345,17 +344,36 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
         className={classNames(styles.BaseChat, 'relative flex h-full w-full overflow-hidden')}
         data-chat-visible={showChat}
       >
-        <ClientOnly>{() => <Menu />}</ClientOnly>
+        <BackgroundRays />
+        <GlassParticles />
+        <div className={styles.GlassyBackground} />
+        {chatStarted && <ClientOnly>{() => <Menu />}</ClientOnly>}
         <div className="flex flex-col lg:flex-row overflow-y-auto w-full h-full">
           <div className={classNames(styles.Chat, 'flex flex-col flex-grow lg:min-w-[var(--chat-min-width)] h-full')}>
             {!chatStarted && (
-              <div id="intro" className="mt-[16vh] max-w-2xl mx-auto text-center px-4 lg:px-0">
-                <h1 className="text-3xl lg:text-6xl font-bold text-bolt-elements-textPrimary mb-4 animate-fade-in">
-                  Where ideas begin
-                </h1>
-                <p className="text-md lg:text-xl mb-8 text-bolt-elements-textSecondary animate-fade-in animation-delay-200">
-                  Bring ideas to life in seconds or get help on existing projects.
+              <div
+                id="intro"
+                className={classNames('mt-[14vh] mb-3 max-w-2xl mx-auto text-center px-4 lg:px-0', styles.GlassHero)}
+              >
+                <p className="uppercase tracking-widest text-xs text-bolt-elements-textSecondary mb-2">
+                  introducing fusion
                 </p>
+                <h1 className="text-4xl lg:text-6xl font-bold text-bolt-elements-textPrimary mb-2">
+                  Your app starts here
+                </h1>
+                <p className="text-sm lg:text-base text-bolt-elements-textSecondary">
+                  Design, generate and ship — with your existing code context
+                </p>
+                <div className={classNames('mt-4', styles.TrustLogoRow)}>
+                  <span className="text-xs text-bolt-elements-textTertiary">Trusted by</span>
+                  <div className={styles.TrustLogos}>
+                    <img src="/icons/Google.svg" alt="Google" />
+                    <img src="/icons/Anthropic.svg" alt="Anthropic" />
+                    <img src="/icons/OpenAI.svg" alt="OpenAI" />
+                    <img src="/icons/Groq.svg" alt="Groq" />
+                    <img src="/icons/OpenRouter.svg" alt="OpenRouter" />
+                  </div>
+                </div>
               </div>
             )}
             <StickToBottom
@@ -468,32 +486,127 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
                 />
               </div>
             </StickToBottom>
-            <div className="flex flex-col justify-center">
-              {!chatStarted && (
-                <div className="flex justify-center gap-2">
-                  {ImportButtons(importChat)}
-                  <GitCloneButton importChat={importChat} />
-                </div>
-              )}
-              <div className="flex flex-col gap-5">
-                {!chatStarted &&
-                  ExamplePrompts((event, messageInput) => {
-                    if (isStreaming) {
-                      handleStop?.();
-                      return;
-                    }
+            {!chatStarted && (
+              <div className="px-4">
+                <div className={classNames('flex flex-wrap justify-center gap-2 mt-3', styles.GlassHeroCtas)}>
+                  <button
+                    className="px-3 py-1.5 rounded-full border border-bolt-elements-borderColor bg-bolt-elements-background-depth-2 text-sm text-bolt-elements-textPrimary"
+                    onClick={() => {
+                      const url = window.prompt('Enter Git repository URL');
 
-                    handleSendMessage?.(event, messageInput);
-                  })}
-                {!chatStarted && <StarterTemplates />}
+                      if (url) {
+                        window.location.href = `/git?url=${encodeURIComponent(url)}`;
+                      }
+                    }}
+                  >
+                    Connect a repo
+                  </button>
+                  <button
+                    className="px-3 py-1.5 rounded-full border border-bolt-elements-borderColor bg-bolt-elements-background-depth-2 text-sm text-bolt-elements-textPrimary"
+                    onClick={() => {
+                      window.open(
+                        'https://www.figma.com/community/plugin/747985167520967365/builder-io-ai-powered-figma-to-code-react-vue-tailwind-more',
+                        '_blank',
+                      );
+                    }}
+                  >
+                    Figma Import
+                  </button>
+                  <button className="px-3 py-1.5 rounded-full border border-bolt-elements-borderColor bg-bolt-elements-background-depth-2 text-sm text-bolt-elements-textPrimary">
+                    MCP Servers
+                  </button>
+                  <button className="px-3 py-1.5 rounded-full border border-bolt-elements-borderColor bg-bolt-elements-background-depth-2 text-sm text-bolt-elements-textPrimary">
+                    Get Extension
+                  </button>
+                </div>
+
+                <section className={classNames(styles.LandingSection)}>
+                  <div className={styles.CardsGrid}>
+                    <div className={classNames(styles.StepCard, styles.GlassCard)}>
+                      <h3>Craft</h3>
+                      <p>Describe your app and pick a template.</p>
+                    </div>
+                    <div className={classNames(styles.StepCard, styles.GlassCard)}>
+                      <h3>Build</h3>
+                      <p>Generate screens, code, and data flows.</p>
+                    </div>
+                    <div className={classNames(styles.StepCard, styles.GlassCard)}>
+                      <h3>Launch</h3>
+                      <p>Preview, test, and deploy in minutes.</p>
+                    </div>
+                  </div>
+                </section>
+
+                <section className={styles.LandingSection}>
+                  <div className={styles.FeatureGrid}>
+                    <div className={classNames(styles.FeatureCard, styles.GlassCard)}>
+                      <div className="i-ph:magic-wand-duotone" />
+                      <h4>AI-assisted UI</h4>
+                      <p>Iterate visually with instant code sync.</p>
+                    </div>
+                    <div className={classNames(styles.FeatureCard, styles.GlassCard)}>
+                      <div className="i-ph:git-branch-duotone" />
+                      <h4>Git-native</h4>
+                      <p>Connect repos, branches, and PRs.</p>
+                    </div>
+                    <div className={classNames(styles.FeatureCard, styles.GlassCard)}>
+                      <div className="i-ph:device-mobile-camera-duotone" />
+                      <h4>Device previews</h4>
+                      <p>See responsive states in real time.</p>
+                    </div>
+                    <div className={classNames(styles.FeatureCard, styles.GlassCard)}>
+                      <div className="i-ph:lock-key-duotone" />
+                      <h4>Team-safe</h4>
+                      <p>Locks, diffs, and review flows built-in.</p>
+                    </div>
+                  </div>
+                </section>
+
+                <section className={styles.LandingSection}>
+                  <div className={styles.DeviceShowcase}>
+                    <div className={styles.DeviceMock} />
+                    <div className={styles.DeviceMockAlt} />
+                    <div className={styles.DeviceMock} />
+                  </div>
+                </section>
+
+                <section className={styles.LandingSection}>
+                  <h3 className={styles.SectionHeading}>Integrate with what you use</h3>
+                  <div className={styles.IntegrationsGrid}>
+                    <img src="/icons/OpenAI.svg" alt="OpenAI" />
+                    <img src="/icons/Anthropic.svg" alt="Anthropic" />
+                    <img src="/icons/Google.svg" alt="Google" />
+                    <img src="/icons/Groq.svg" alt="Groq" />
+                    <img src="/icons/Deepseek.svg" alt="DeepSeek" />
+                    <img src="/icons/OpenRouter.svg" alt="OpenRouter" />
+                  </div>
+                </section>
+
+                <section className={classNames(styles.LandingSection, styles.GlassCard)}>
+                  <div className={styles.CtaBand}>
+                    <div>
+                      <h4>Short on time?</h4>
+                      <p>We can scaffold your app and wire integrations for you.</p>
+                    </div>
+                    <button className="px-3 py-1.5 rounded-full border border-bolt-elements-borderColor bg-bolt-elements-background-depth-2 text-sm text-bolt-elements-textPrimary">
+                      Talk to us
+                    </button>
+                  </div>
+                </section>
               </div>
-            </div>
-          </div>
-          <ClientOnly>
-            {() => (
-              <Workbench chatStarted={chatStarted} isStreaming={isStreaming} setSelectedElement={setSelectedElement} />
             )}
-          </ClientOnly>
+          </div>
+          {chatStarted && (
+            <ClientOnly>
+              {() => (
+                <Workbench
+                  chatStarted={chatStarted}
+                  isStreaming={isStreaming}
+                  setSelectedElement={setSelectedElement}
+                />
+              )}
+            </ClientOnly>
+          )}
         </div>
       </div>
     );

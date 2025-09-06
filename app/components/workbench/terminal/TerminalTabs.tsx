@@ -9,6 +9,7 @@ import { classNames } from '~/utils/classNames';
 import { Terminal, type TerminalRef } from './Terminal';
 import { TerminalManager } from './TerminalManager';
 import { createScopedLogger } from '~/utils/logger';
+import styles from '~/components/chat/BaseChat.module.scss';
 
 const logger = createScopedLogger('Terminal');
 
@@ -132,7 +133,12 @@ export const TerminalTabs = memo(() => {
     >
       <div className="h-full">
         <div className="bg-bolt-elements-terminals-background h-full flex flex-col">
-          <div className="flex items-center bg-bolt-elements-background-depth-2 border-y border-bolt-elements-borderColor gap-1.5 min-h-[34px] p-2">
+          <div
+            className={classNames(
+              'flex items-center bg-bolt-elements-background-depth-2 border-y border-bolt-elements-borderColor gap-1.5 min-h-[34px] p-2 rounded-t-lg',
+              styles.GlassCard,
+            )}
+          >
             {Array.from({ length: terminalCount + 1 }, (_, index) => {
               const isActive = activeTerminal === index;
 

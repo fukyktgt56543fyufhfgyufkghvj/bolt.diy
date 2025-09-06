@@ -51,40 +51,59 @@ export async function loader({
     };
   };
 }): Promise<Response> {
-  const llmManager = LLMManager.getInstance(context.cloudflare?.env);
+  try {
+    const llmManager = LLMManager.getInstance(context.cloudflare?.env);
 
-  // Get client side maintained API keys and provider settings from cookies
-  const cookieHeader = request.headers.get('Cookie');
-  const apiKeys = getApiKeysFromCookie(cookieHeader);
-  const providerSettings = getProviderSettingsFromCookie(cookieHeader);
+    // Get client side maintained API keys and provider settings from cookies
+    const cookieHeader = request.headers.get('Cookie');
+    const apiKeys = getApiKeysFromCookie(cookieHeader);
+    const providerSettings = getProviderSettingsFromCookie(cookieHeader);
 
-  const { providers, defaultProvider } = getProviderInfo(llmManager);
+    const { providers, defaultProvider } = getProviderInfo(llmManager);
 
-  let modelList: ModelInfo[] = [];
+    let modelList: ModelInfo[] = [];
 
-  if (params.provider) {
-    // Only update models for the specific provider
-    const provider = llmManager.getProvider(params.provider);
+    if (params.provider) {
+      // Only update models for the specific provider
+      const provider = llmManager.getProvider(params.provider);
 
-    if (provider) {
-      modelList = await llmManager.getModelListFromProvider(provider, {
+      if (provider) {
+        modelList = await llmManager.getModelListFromProvider(provider, {
+          apiKeys,
+          providerSettings,
+          serverEnv: context.cloudflare?.env,
+        });
+      }
+    } else {
+      // Update all models
+      modelList = await llmManager.updateModelList({
         apiKeys,
         providerSettings,
         serverEnv: context.cloudflare?.env,
       });
     }
-  } else {
-    // Update all models
-    modelList = await llmManager.updateModelList({
-      apiKeys,
-      providerSettings,
-      serverEnv: context.cloudflare?.env,
+
+    return json<ModelsResponse>({
+      modelList,
+      providers,
+      defaultProvider,
+    });
+  } catch (err) {
+    console.error('Failed to load models:', err);
+
+    // Always return a safe JSON response to avoid client-side fetch failures
+    return json<ModelsResponse>({
+      modelList: [],
+      providers: [],
+
+      // Provide a minimal default provider to satisfy consumer types
+      defaultProvider: {
+        name: 'OpenRouter',
+        staticModels: [],
+        getApiKeyLink: '',
+        labelForGetApiKey: '',
+        icon: 'i-ph:robot',
+      } as any,
     });
   }
-
-  return json<ModelsResponse>({
-    modelList,
-    providers,
-    defaultProvider,
-  });
 }
