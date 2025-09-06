@@ -34,6 +34,7 @@ import type { DesignScheme } from '~/types/design-scheme';
 import type { ElementInfo } from '~/components/workbench/Inspector';
 import LlmErrorAlert from './LLMApiAlert';
 import BackgroundRays from '~/components/ui/BackgroundRays';
+import GlassParticles from '~/components/ui/GlassParticles';
 
 const TEXTAREA_MIN_HEIGHT = 76;
 
@@ -347,6 +348,7 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
         data-chat-visible={showChat}
       >
         <BackgroundRays />
+        <GlassParticles />
         <div className={styles.GlassyBackground} />
         {chatStarted && <ClientOnly>{() => <Menu />}</ClientOnly>}
         <div className="flex flex-col lg:flex-row overflow-y-auto w-full h-full">
