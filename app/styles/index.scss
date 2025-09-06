@@ -13,7 +13,16 @@ body {
   width: 100%;
   background-color: var(--bolt-elements-bg-depth-1);
   color: var(--bolt-elements-textPrimary);
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Helvetica,
+    Arial,
+    'Apple Color Emoji',
+    'Segoe UI Emoji';
 }
 
 :root {
@@ -67,20 +76,29 @@ body::before {
   pointer-events: none;
   z-index: 0;
   background:
-    radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.7), transparent 60%),
-    radial-gradient(1px 1px at 40% 70%, rgba(255,255,255,0.6), transparent 60%),
-    radial-gradient(1.5px 1.5px at 60% 20%, rgba(255,255,255,0.65), transparent 60%),
-    radial-gradient(1px 1px at 80% 50%, rgba(255,255,255,0.55), transparent 60%),
-    radial-gradient(1.5px 1.5px at 30% 80%, rgba(255,255,255,0.6), transparent 60%),
-    radial-gradient(1px 1px at 70% 85%, rgba(255,255,255,0.5), transparent 60%);
+    radial-gradient(2px 2px at 20% 30%, rgba(255, 255, 255, 0.7), transparent 60%),
+    radial-gradient(1px 1px at 40% 70%, rgba(255, 255, 255, 0.6), transparent 60%),
+    radial-gradient(1.5px 1.5px at 60% 20%, rgba(255, 255, 255, 0.65), transparent 60%),
+    radial-gradient(1px 1px at 80% 50%, rgba(255, 255, 255, 0.55), transparent 60%),
+    radial-gradient(1.5px 1.5px at 30% 80%, rgba(255, 255, 255, 0.6), transparent 60%),
+    radial-gradient(1px 1px at 70% 85%, rgba(255, 255, 255, 0.5), transparent 60%);
   opacity: 0.35;
   animation: star-drift 60s linear infinite;
 }
 
 @keyframes star-drift {
-  0% { transform: translateY(0px); opacity: 0.35; }
-  50% { transform: translateY(10px); opacity: 0.45; }
-  100% { transform: translateY(0px); opacity: 0.35; }
+  0% {
+    transform: translateY(0px);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateY(10px);
+    opacity: 0.45;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 0.35;
+  }
 }
 
 /* Soft animated gradient haze */
@@ -90,16 +108,21 @@ body::after {
   inset: -20% -10% -20% -10%;
   pointer-events: none;
   z-index: 0;
-  background: radial-gradient(40% 30% at 20% 20%, rgba(147,51,234,0.25), transparent 60%),
-              radial-gradient(35% 25% at 80% 30%, rgba(59,130,246,0.22), transparent 60%),
-              radial-gradient(30% 25% at 50% 80%, rgba(236,72,153,0.18), transparent 65%);
+  background:
+    radial-gradient(40% 30% at 20% 20%, rgba(147, 51, 234, 0.25), transparent 60%),
+    radial-gradient(35% 25% at 80% 30%, rgba(59, 130, 246, 0.22), transparent 60%),
+    radial-gradient(30% 25% at 50% 80%, rgba(236, 72, 153, 0.18), transparent 65%);
   filter: blur(60px);
   animation: haze-drift 24s ease-in-out infinite alternate;
 }
 
 @keyframes haze-drift {
-  0% { transform: translateY(0) translateX(0) scale(1); }
-  100% { transform: translateY(-10px) translateX(6px) scale(1.03); }
+  0% {
+    transform: translateY(0) translateX(0) scale(1);
+  }
+  100% {
+    transform: translateY(-10px) translateX(6px) scale(1.03);
+  }
 }
 
 /* Force dark minimalist variables across themes (override order) */

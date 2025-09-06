@@ -56,7 +56,7 @@
     radial-gradient(600px 300px at 90% -5%, rgba(46, 213, 115, 0.12), transparent 60%),
     radial-gradient(700px 350px at 50% -15%, rgba(20, 136, 252, 0.14), transparent 60%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0));
-  mask-image: radial-gradient(closest-side, rgba(0,0,0,0.9), transparent 80%);
+  mask-image: radial-gradient(closest-side, rgba(0, 0, 0, 0.9), transparent 80%);
 }
 
 .GlassCard {
@@ -66,12 +66,16 @@
   box-shadow:
     0 10px 30px rgba(0, 0, 0, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
-  transition: transform .2s ease, box-shadow .2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .GlassCard:hover {
   transform: translateY(-2px);
-  box-shadow: 0 16px 40px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.06);
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 .GlassCard::before {
@@ -79,7 +83,7 @@
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
   pointer-events: none;
 }
 
@@ -89,43 +93,147 @@
   border-radius: 16px;
   backdrop-filter: saturate(140%) blur(20px);
   -webkit-backdrop-filter: saturate(140%) blur(20px);
-  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-  box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
   border: 1px solid var(--bolt-elements-borderColor);
 }
 
-.GlassHeroCtas { position: relative; }
-.GlassHeroCtas > button { backdrop-filter: saturate(140%) blur(10px); -webkit-backdrop-filter: saturate(140%) blur(10px); background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); }
-
-.TrustLogoRow { display:flex; flex-direction:column; gap:.5rem; align-items:center; }
-.TrustLogos { display:flex; gap:1.25rem; align-items:center; justify-content:center; opacity:.8; }
-.TrustLogos img { height:18px; filter: grayscale(1) opacity(.9); }
-
-.LandingSection { max-width: 1100px; margin: 2rem auto; }
-.CardsGrid { display:grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; padding: .5rem; }
-.StepCard { border: 1px solid var(--bolt-elements-borderColor); border-radius: 16px; padding: 1rem; }
-.StepCard h3 { margin: 0 0 .25rem; }
-
-.FeatureGrid { display:grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
-.FeatureCard { border: 1px solid var(--bolt-elements-borderColor); border-radius: 16px; padding: 1rem; display:flex; flex-direction:column; gap:.5rem; }
-.FeatureCard > div { font-size: 20px; opacity: .8; }
-
-.DeviceShowcase { display:flex; gap:1rem; justify-content:center; }
-.DeviceMock, .DeviceMockAlt { width: 200px; height: 380px; border-radius: 28px; border:1px solid var(--bolt-elements-borderColor); background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); box-shadow: inset 0 1px 0 rgba(255,255,255,.06); }
-.DeviceMockAlt { background: radial-gradient(closest-side, rgba(20,136,252,.12), transparent), linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); }
-
-.SectionHeading { text-align:center; margin-bottom: .75rem; }
-.IntegrationsGrid { display:grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 1rem; align-items:center; justify-items:center; }
-.IntegrationsGrid img { height: 28px; filter: grayscale(1); opacity:.9; }
-
-.CtaBand { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding: 1rem; border-radius: 16px; }
-
-@media (max-width: 1024px) {
-  .CardsGrid { grid-template-columns: 1fr; }
-  .FeatureGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .DeviceShowcase { flex-wrap: wrap; }
-  .IntegrationsGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.GlassHeroCtas {
+  position: relative;
+}
+.GlassHeroCtas > button {
+  backdrop-filter: saturate(140%) blur(10px);
+  -webkit-backdrop-filter: saturate(140%) blur(10px);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
 }
 
-.DropdownFadeIn { animation: dropdown-in 180ms ease-out; transform-origin: top; }
-@keyframes dropdown-in { from { opacity: 0; transform: translateY(6px) scale(0.99); } to { opacity: 1; transform: translateY(0) scale(1); } }
+.TrustLogoRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+.TrustLogos {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+}
+.TrustLogos img {
+  height: 18px;
+  filter: grayscale(1) opacity(0.9);
+}
+
+.LandingSection {
+  max-width: 1100px;
+  margin: 2rem auto;
+}
+.CardsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  padding: 0.5rem;
+}
+.StepCard {
+  border: 1px solid var(--bolt-elements-borderColor);
+  border-radius: 16px;
+  padding: 1rem;
+}
+.StepCard h3 {
+  margin: 0 0 0.25rem;
+}
+
+.FeatureGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+.FeatureCard {
+  border: 1px solid var(--bolt-elements-borderColor);
+  border-radius: 16px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.FeatureCard > div {
+  font-size: 20px;
+  opacity: 0.8;
+}
+
+.DeviceShowcase {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+.DeviceMock,
+.DeviceMockAlt {
+  width: 200px;
+  height: 380px;
+  border-radius: 28px;
+  border: 1px solid var(--bolt-elements-borderColor);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+.DeviceMockAlt {
+  background:
+    radial-gradient(closest-side, rgba(20, 136, 252, 0.12), transparent),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+}
+
+.SectionHeading {
+  text-align: center;
+  margin-bottom: 0.75rem;
+}
+.IntegrationsGrid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: center;
+  justify-items: center;
+}
+.IntegrationsGrid img {
+  height: 28px;
+  filter: grayscale(1);
+  opacity: 0.9;
+}
+
+.CtaBand {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 16px;
+}
+
+@media (max-width: 1024px) {
+  .CardsGrid {
+    grid-template-columns: 1fr;
+  }
+  .FeatureGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .DeviceShowcase {
+    flex-wrap: wrap;
+  }
+  .IntegrationsGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.DropdownFadeIn {
+  animation: dropdown-in 180ms ease-out;
+  transform-origin: top;
+}
+@keyframes dropdown-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
