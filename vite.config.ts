@@ -16,12 +16,18 @@ export default defineConfig((config) => {
     define: {
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
     },
-    build: {
-      target: 'esnext',
-    },
-    plugins: [
-      nodePolyfills({
-        include: ['buffer', 'process', 'util', 'stream'],
+build: {
+  target: 'esnext',
+},
+server: process.env.NODE_ENV !== 'production' ? {
+  host: true,
+  port: 5173,
+  strictPort: true,
+  allowedHosts: 'all',
+} : undefined,
+plugins: [
+  nodePolyfills({
+    include: ['buffer', 'process', 'util', 'stream'],
         globals: {
           Buffer: true,
           process: true,
