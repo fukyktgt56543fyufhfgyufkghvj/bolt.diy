@@ -356,8 +356,18 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
             {!chatStarted && (
               <div id="intro" className={classNames('mt-[14vh] mb-3 max-w-2xl mx-auto text-center px-4 lg:px-0', styles.GlassHero)}>
                 <p className="uppercase tracking-widest text-xs text-bolt-elements-textSecondary mb-2">introducing fusion</p>
-                <h1 className="text-4xl lg:text-6xl font-bold text-bolt-elements-textPrimary mb-2">What should we build?</h1>
-                <p className="text-sm lg:text-base text-bolt-elements-textSecondary">using your existing design & code context</p>
+                <h1 className="text-4xl lg:text-6xl font-bold text-bolt-elements-textPrimary mb-2">Your app starts here</h1>
+                <p className="text-sm lg:text-base text-bolt-elements-textSecondary">Design, generate and ship — with your existing code context</p>
+                <div className={classNames('mt-4', styles.TrustLogoRow)}>
+                  <span className="text-xs text-bolt-elements-textTertiary">Trusted by</span>
+                  <div className={styles.TrustLogos}>
+                    <img src="/icons/Google.svg" alt="Google" />
+                    <img src="/icons/Anthropic.svg" alt="Anthropic" />
+                    <img src="/icons/Netlify.svg" alt="Netlify" />
+                    <img src="/icons/Vercel.svg" alt="Vercel" />
+                    <img src="/icons/Github.svg" alt="GitHub" />
+                  </div>
+                </div>
               </div>
             )}
             <StickToBottom
@@ -471,33 +481,107 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
               </div>
             </StickToBottom>
             {!chatStarted && (
-              <div className={classNames('flex flex-wrap justify-center gap-2 mt-3', styles.GlassHeroCtas)}>
-                <button
-                  className="px-3 py-1.5 rounded-full border border-bolt-elements-borderColor bg-bolt-elements-background-depth-2 text-sm text-bolt-elements-textPrimary"
-                  onClick={() => {
-                    const url = window.prompt('Enter Git repository URL');
-                    if (url) window.location.href = `/git?url=${encodeURIComponent(url)}`;
-                  }}
-                >
-                  Connect a repo
-                </button>
-                <button
-                  className="px-3 py-1.5 rounded-full border border-bolt-elements-borderColor bg-bolt-elements-background-depth-2 text-sm text-bolt-elements-textPrimary"
-                  onClick={() => {
-                    window.open(
-                      'https://www.figma.com/community/plugin/747985167520967365/builder-io-ai-powered-figma-to-code-react-vue-tailwind-more',
-                      '_blank',
-                    );
-                  }}
-                >
-                  Figma Import
-                </button>
-                <button className="px-3 py-1.5 rounded-full border border-bolt-elements-borderColor bg-bolt-elements-background-depth-2 text-sm text-bolt-elements-textPrimary">
-                  MCP Servers
-                </button>
-                <button className="px-3 py-1.5 rounded-full border border-bolt-elements-borderColor bg-bolt-elements-background-depth-2 text-sm text-bolt-elements-textPrimary">
-                  Get Extension
-                </button>
+              <div className="px-4">
+                <div className={classNames('flex flex-wrap justify-center gap-2 mt-3', styles.GlassHeroCtas)}>
+                  <button
+                    className="px-3 py-1.5 rounded-full border border-bolt-elements-borderColor bg-bolt-elements-background-depth-2 text-sm text-bolt-elements-textPrimary"
+                    onClick={() => {
+                      const url = window.prompt('Enter Git repository URL');
+                      if (url) window.location.href = `/git?url=${encodeURIComponent(url)}`;
+                    }}
+                  >
+                    Connect a repo
+                  </button>
+                  <button
+                    className="px-3 py-1.5 rounded-full border border-bolt-elements-borderColor bg-bolt-elements-background-depth-2 text-sm text-bolt-elements-textPrimary"
+                    onClick={() => {
+                      window.open(
+                        'https://www.figma.com/community/plugin/747985167520967365/builder-io-ai-powered-figma-to-code-react-vue-tailwind-more',
+                        '_blank',
+                      );
+                    }}
+                  >
+                    Figma Import
+                  </button>
+                  <button className="px-3 py-1.5 rounded-full border border-bolt-elements-borderColor bg-bolt-elements-background-depth-2 text-sm text-bolt-elements-textPrimary">
+                    MCP Servers
+                  </button>
+                  <button className="px-3 py-1.5 rounded-full border border-bolt-elements-borderColor bg-bolt-elements-background-depth-2 text-sm text-bolt-elements-textPrimary">
+                    Get Extension
+                  </button>
+                </div>
+
+                <section className={classNames(styles.LandingSection)}>
+                  <div className={styles.CardsGrid}>
+                    <div className={classNames(styles.StepCard, styles.GlassCard)}>
+                      <h3>Craft</h3>
+                      <p>Describe your app and pick a template.</p>
+                    </div>
+                    <div className={classNames(styles.StepCard, styles.GlassCard)}>
+                      <h3>Build</h3>
+                      <p>Generate screens, code, and data flows.</p>
+                    </div>
+                    <div className={classNames(styles.StepCard, styles.GlassCard)}>
+                      <h3>Launch</h3>
+                      <p>Preview, test, and deploy in minutes.</p>
+                    </div>
+                  </div>
+                </section>
+
+                <section className={styles.LandingSection}>
+                  <div className={styles.FeatureGrid}>
+                    <div className={classNames(styles.FeatureCard, styles.GlassCard)}>
+                      <div className="i-ph:magic-wand-duotone" />
+                      <h4>AI-assisted UI</h4>
+                      <p>Iterate visually with instant code sync.</p>
+                    </div>
+                    <div className={classNames(styles.FeatureCard, styles.GlassCard)}>
+                      <div className="i-ph:git-branch-duotone" />
+                      <h4>Git-native</h4>
+                      <p>Connect repos, branches, and PRs.</p>
+                    </div>
+                    <div className={classNames(styles.FeatureCard, styles.GlassCard)}>
+                      <div className="i-ph:device-mobile-camera-duotone" />
+                      <h4>Device previews</h4>
+                      <p>See responsive states in real time.</p>
+                    </div>
+                    <div className={classNames(styles.FeatureCard, styles.GlassCard)}>
+                      <div className="i-ph:lock-key-duotone" />
+                      <h4>Team-safe</h4>
+                      <p>Locks, diffs, and review flows built-in.</p>
+                    </div>
+                  </div>
+                </section>
+
+                <section className={styles.LandingSection}>
+                  <div className={styles.DeviceShowcase}>
+                    <div className={styles.DeviceMock} />
+                    <div className={styles.DeviceMockAlt} />
+                    <div className={styles.DeviceMock} />
+                  </div>
+                </section>
+
+                <section className={styles.LandingSection}>
+                  <h3 className={styles.SectionHeading}>Integrate with what you use</h3>
+                  <div className={styles.IntegrationsGrid}>
+                    <img src="/icons/Github.svg" alt="GitHub" />
+                    <img src="/icons/Netlify.svg" alt="Netlify" />
+                    <img src="/icons/Vercel.svg" alt="Vercel" />
+                    <img src="/icons/Google.svg" alt="Google" />
+                    <img src="/icons/Deepseek.svg" alt="DeepSeek" />
+                    <img src="/icons/Anthropic.svg" alt="Anthropic" />
+                  </div>
+                </section>
+
+                <section className={classNames(styles.LandingSection, styles.GlassCard)}>
+                  <div className={styles.CtaBand}>
+                    <div>
+                      <h4>Short on time?</h4>
+                      <p>We can scaffold your app and wire integrations for you.</p>
+                    </div>
+                    <button className="px-3 py-1.5 rounded-full border border-bolt-elements-borderColor bg-bolt-elements-background-depth-2 text-sm text-bolt-elements-textPrimary">Talk to us</button>
+                  </div>
+                </section>
               </div>
             )}
           </div>
