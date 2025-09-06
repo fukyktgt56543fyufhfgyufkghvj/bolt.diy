@@ -105,7 +105,7 @@ export const ChatBox: React.FC<ChatBoxProps> = (props) => {
       <div>
         <ClientOnly>
           {() => (
-            <div className={props.chatStarted && !props.isModelSettingsCollapsed ? '' : 'hidden'}>
+            <div className={!props.isModelSettingsCollapsed ? '' : 'hidden'}>
               <ModelSelector
                 key={props.provider?.name + ':' + props.modelList.length}
                 model={props.model}
@@ -117,8 +117,7 @@ export const ChatBox: React.FC<ChatBoxProps> = (props) => {
                 apiKeys={props.apiKeys}
                 modelLoading={props.isModelLoading}
               />
-              {props.chatStarted &&
-                (props.providerList || []).length > 0 &&
+              {(props.providerList || []).length > 0 &&
                 props.provider &&
                 (!LOCAL_PROVIDERS.includes(props.provider.name) || 'OpenAILike') && (
                   <APIKeyManager
