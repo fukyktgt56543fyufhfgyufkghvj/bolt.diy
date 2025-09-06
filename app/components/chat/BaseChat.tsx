@@ -363,9 +363,9 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
                   <div className={styles.TrustLogos}>
                     <img src="/icons/Google.svg" alt="Google" />
                     <img src="/icons/Anthropic.svg" alt="Anthropic" />
-                    <img src="/icons/Netlify.svg" alt="Netlify" />
-                    <img src="/icons/Vercel.svg" alt="Vercel" />
-                    <img src="/icons/Github.svg" alt="GitHub" />
+                    <img src="/icons/OpenAI.svg" alt="OpenAI" />
+                    <img src="/icons/Groq.svg" alt="Groq" />
+                    <img src="/icons/OpenRouter.svg" alt="OpenRouter" />
                   </div>
                 </div>
               </div>
@@ -564,12 +564,12 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
                 <section className={styles.LandingSection}>
                   <h3 className={styles.SectionHeading}>Integrate with what you use</h3>
                   <div className={styles.IntegrationsGrid}>
-                    <img src="/icons/Github.svg" alt="GitHub" />
-                    <img src="/icons/Netlify.svg" alt="Netlify" />
-                    <img src="/icons/Vercel.svg" alt="Vercel" />
-                    <img src="/icons/Google.svg" alt="Google" />
-                    <img src="/icons/Deepseek.svg" alt="DeepSeek" />
+                    <img src="/icons/OpenAI.svg" alt="OpenAI" />
                     <img src="/icons/Anthropic.svg" alt="Anthropic" />
+                    <img src="/icons/Google.svg" alt="Google" />
+                    <img src="/icons/Groq.svg" alt="Groq" />
+                    <img src="/icons/Deepseek.svg" alt="DeepSeek" />
+                    <img src="/icons/OpenRouter.svg" alt="OpenRouter" />
                   </div>
                 </section>
 
