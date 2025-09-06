@@ -24,7 +24,7 @@
     "paths": {
       "~/*": ["./app/*"]
     },
-    
+
     "noEmit": true
   },
   "include": [
@@ -35,7 +35,5 @@
     "**/.client/**/*.ts",
     "**/.client/**/*.tsx"
   ],
-  "exclude": [
-    "functions/**"
-  ]
+  "exclude": ["functions/**"]
 }
