@@ -14,11 +14,7 @@ import { getApiKeysFromCookies } from './APIKeyManager';
 import Cookies from 'js-cookie';
 import * as Tooltip from '@radix-ui/react-tooltip';
 import styles from './BaseChat.module.scss';
-import { ImportButtons } from '~/components/chat/chatExportAndImport/ImportButtons';
-import { ExamplePrompts } from '~/components/chat/ExamplePrompts';
-import GitCloneButton from './GitCloneButton';
 import type { ProviderInfo } from '~/types/model';
-import StarterTemplates from './StarterTemplates';
 import type { ActionAlert, SupabaseAlert, DeployAlert, LlmErrorAlertType } from '~/types/actions';
 import DeployChatAlert from '~/components/deploy/DeployAlert';
 import ChatAlert from './ChatAlert';
@@ -106,7 +102,7 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
       enhancePrompt,
       sendMessage,
       handleStop,
-      importChat,
+      _importChat: importChat,
       exportChat,
       uploadedFiles = [],
       setUploadedFiles,
@@ -487,7 +483,9 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
                     className="px-3 py-1.5 rounded-full border border-bolt-elements-borderColor bg-bolt-elements-background-depth-2 text-sm text-bolt-elements-textPrimary"
                     onClick={() => {
                       const url = window.prompt('Enter Git repository URL');
-                      if (url) window.location.href = `/git?url=${encodeURIComponent(url)}`;
+                    if (url) {
+                      window.location.href = `/git?url=${encodeURIComponent(url)}`;
+                    }
                     }}
                   >
                     Connect a repo
