@@ -9,6 +9,7 @@ import { classNames } from '~/utils/classNames';
 import { Terminal, type TerminalRef } from './Terminal';
 import { TerminalManager } from './TerminalManager';
 import { createScopedLogger } from '~/utils/logger';
+import styles from '~/components/chat/BaseChat.module.scss';
 
 const logger = createScopedLogger('Terminal');
 
