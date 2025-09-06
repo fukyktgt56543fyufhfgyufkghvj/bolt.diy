@@ -45,3 +45,55 @@
   fill: url(#shine-gradient);
   mix-blend-mode: overlay;
 }
+
+.GlassyBackground {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(800px 400px at 10% -10%, rgba(108, 92, 231, 0.16), transparent 60%),
+    radial-gradient(600px 300px at 90% -5%, rgba(46, 213, 115, 0.12), transparent 60%),
+    radial-gradient(700px 350px at 50% -15%, rgba(20, 136, 252, 0.14), transparent 60%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0));
+  mask-image: radial-gradient(closest-side, rgba(0,0,0,0.9), transparent 80%);
+}
+
+.GlassCard {
+  position: relative;
+  backdrop-filter: saturate(120%) blur(14px);
+  -webkit-backdrop-filter: saturate(120%) blur(14px);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.GlassCard::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  pointer-events: none;
+}
+
+.GlassHero {
+  position: relative;
+  padding: 1rem;
+  border-radius: 16px;
+  backdrop-filter: saturate(140%) blur(20px);
+  -webkit-backdrop-filter: saturate(140%) blur(20px);
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+  border: 1px solid var(--bolt-elements-borderColor);
+}
+
+.GlassHeroCtas {
+  position: relative;
+}
+
+.GlassHeroCtas > button {
+  backdrop-filter: saturate(140%) blur(10px);
+  -webkit-backdrop-filter: saturate(140%) blur(10px);
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+}
