@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import { ClientOnly } from 'remix-utils/client-only';
 import { classNames } from '~/utils/classNames';
@@ -67,8 +68,7 @@ export const ChatBox: React.FC<ChatBoxProps> = (props) => {
   return (
     <div
       className={classNames(
-        'relative bg-bolt-elements-background-depth-2 backdrop-blur p-3 rounded-lg border border-bolt-elements-borderColor relative w-full max-w-chat mx-auto z-prompt',
-        styles.GlassCard,
+        'relative bg-bolt-elements-background-depth-2 backdrop-blur p-3 rounded-lg border border-bolt-elements-borderColor relative w-full max-w-chat mx-auto z-prompt', styles.GlassCard,
 
         /*
          * {
@@ -237,13 +237,7 @@ export const ChatBox: React.FC<ChatBoxProps> = (props) => {
             minHeight: props.TEXTAREA_MIN_HEIGHT,
             maxHeight: props.TEXTAREA_MAX_HEIGHT,
           }}
-          placeholder={
-            props.chatStarted
-              ? props.chatMode === 'build'
-                ? 'How can I help you today?'
-                : 'What would you like to discuss?'
-              : "Type your idea and we'll build it together."
-          }
+          placeholder={props.chatStarted ? (props.chatMode === 'build' ? 'How can I help you today?' : 'What would you like to discuss?') : "Type your idea and we'll build it together."}
           translate="no"
         />
         <ClientOnly>
