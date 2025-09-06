@@ -33,6 +33,7 @@ import { ChatBox } from './ChatBox';
 import type { DesignScheme } from '~/types/design-scheme';
 import type { ElementInfo } from '~/components/workbench/Inspector';
 import LlmErrorAlert from './LLMApiAlert';
+import BackgroundRays from '~/components/ui/BackgroundRays';
 
 const TEXTAREA_MIN_HEIGHT = 76;
 
@@ -345,11 +346,12 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
         className={classNames(styles.BaseChat, 'relative flex h-full w-full overflow-hidden')}
         data-chat-visible={showChat}
       >
+        <BackgroundRays />
         {chatStarted && <ClientOnly>{() => <Menu />}</ClientOnly>}
         <div className="flex flex-col lg:flex-row overflow-y-auto w-full h-full">
           <div className={classNames(styles.Chat, 'flex flex-col flex-grow lg:min-w-[var(--chat-min-width)] h-full')}>
             {!chatStarted && (
-              <div id="intro" className="mt-[14vh] mb-3 max-w-2xl mx-auto text-center px-4 lg:px-0">
+              <div id="intro" className={classNames('mt-[14vh] mb-3 max-w-2xl mx-auto text-center px-4 lg:px-0', styles.GlassHero)}>
                 <p className="uppercase tracking-widest text-xs text-bolt-elements-textSecondary mb-2">introducing fusion</p>
                 <h1 className="text-4xl lg:text-6xl font-bold text-bolt-elements-textPrimary mb-2">What should we build?</h1>
                 <p className="text-sm lg:text-base text-bolt-elements-textSecondary">using your existing design & code context</p>
@@ -466,7 +468,7 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
               </div>
             </StickToBottom>
             {!chatStarted && (
-              <div className="flex flex-wrap justify-center gap-2 mt-3">
+              <div className={classNames('flex flex-wrap justify-center gap-2 mt-3', styles.GlassHeroCtas)}>
                 <button
                   className="px-3 py-1.5 rounded-full border border-bolt-elements-borderColor bg-bolt-elements-background-depth-2 text-sm text-bolt-elements-textPrimary"
                   onClick={() => {
