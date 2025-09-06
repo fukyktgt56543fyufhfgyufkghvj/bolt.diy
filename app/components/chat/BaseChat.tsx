@@ -484,9 +484,10 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
                     className="px-3 py-1.5 rounded-full border border-bolt-elements-borderColor bg-bolt-elements-background-depth-2 text-sm text-bolt-elements-textPrimary"
                     onClick={() => {
                       const url = window.prompt('Enter Git repository URL');
-                    if (url) {
-                      window.location.href = `/git?url=${encodeURIComponent(url)}`;
-                    }
+
+                      if (url) {
+                        window.location.href = `/git?url=${encodeURIComponent(url)}`;
+                      }
                     }}
                   >
                     Connect a repo
