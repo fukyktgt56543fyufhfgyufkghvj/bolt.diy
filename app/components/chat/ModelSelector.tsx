@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import type { ProviderInfo } from '~/types/model';
 import { useEffect, useState, useRef, useMemo, useCallback } from 'react';
 import type { KeyboardEvent } from 'react';
