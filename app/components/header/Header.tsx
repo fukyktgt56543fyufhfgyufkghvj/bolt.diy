@@ -10,10 +10,13 @@ export function Header() {
 
   return (
     <header
-      className={classNames('flex items-center px-4 border-b h-[var(--header-height)] bg-bolt-elements-background-depth-2 backdrop-blur', {
-        'border-transparent': !chat.started,
-        'border-bolt-elements-borderColor': chat.started,
-      })}
+      className={classNames(
+        'flex items-center px-4 border-b h-[var(--header-height)] bg-bolt-elements-background-depth-2 backdrop-blur',
+        {
+          'border-transparent': !chat.started,
+          'border-bolt-elements-borderColor': chat.started,
+        },
+      )}
     >
       <div className="flex items-center gap-2 z-logo text-bolt-elements-textPrimary cursor-pointer">
         <div className="i-ph:sidebar-simple-duotone text-xl" />

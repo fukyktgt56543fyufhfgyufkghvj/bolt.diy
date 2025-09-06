@@ -95,6 +95,7 @@ export async function loader({
     return json<ModelsResponse>({
       modelList: [],
       providers: [],
+
       // Provide a minimal default provider to satisfy consumer types
       defaultProvider: {
         name: 'OpenRouter',

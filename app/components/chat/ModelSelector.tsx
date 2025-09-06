@@ -454,7 +454,11 @@ export const ModelSelector = ({
 
         {isProviderDropdownOpen && (
           <div
-            className={classNames('absolute z-20 w-full mt-1 py-1 rounded-lg border border-bolt-elements-borderColor bg-bolt-elements-background-depth-2 shadow-lg', styles.GlassCard, styles.DropdownFadeIn)}
+            className={classNames(
+              'absolute z-20 w-full mt-1 py-1 rounded-lg border border-bolt-elements-borderColor bg-bolt-elements-background-depth-2 shadow-lg',
+              styles.GlassCard,
+              styles.DropdownFadeIn,
+            )}
             role="listbox"
             id="provider-listbox"
           >
@@ -611,7 +615,11 @@ export const ModelSelector = ({
 
         {isModelDropdownOpen && (
           <div
-            className={classNames('absolute z-10 w-full mt-1 py-1 rounded-lg border border-bolt-elements-borderColor bg-bolt-elements-background-depth-2 shadow-lg', styles.GlassCard, styles.DropdownFadeIn)}
+            className={classNames(
+              'absolute z-10 w-full mt-1 py-1 rounded-lg border border-bolt-elements-borderColor bg-bolt-elements-background-depth-2 shadow-lg',
+              styles.GlassCard,
+              styles.DropdownFadeIn,
+            )}
             role="listbox"
             id="model-listbox"
           >

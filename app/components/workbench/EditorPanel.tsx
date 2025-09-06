@@ -88,7 +88,12 @@ export const EditorPanel = memo(
             <Panel defaultSize={20} minSize={15} collapsible className="border-r border-bolt-elements-borderColor">
               <div className="h-full">
                 <Tabs.Root defaultValue="files" className="flex flex-col h-full">
-                  <PanelHeader className={classNames('w-full text-sm font-medium text-bolt-elements-textSecondary px-1 rounded-t-lg', styles.GlassCard)}>
+                  <PanelHeader
+                    className={classNames(
+                      'w-full text-sm font-medium text-bolt-elements-textSecondary px-1 rounded-t-lg',
+                      styles.GlassCard,
+                    )}
+                  >
                     <div className="h-full flex-shrink-0 flex items-center justify-between w-full">
                       <Tabs.List className="h-full flex-shrink-0 flex items-center">
                         <Tabs.Trigger
@@ -164,7 +169,12 @@ export const EditorPanel = memo(
                   </div>
                 )}
               </PanelHeader>
-              <div className={classNames('h-full flex-1 overflow-hidden modern-scrollbar rounded-b-lg border border-bolt-elements-borderColor', styles.GlassCard)}>
+              <div
+                className={classNames(
+                  'h-full flex-1 overflow-hidden modern-scrollbar rounded-b-lg border border-bolt-elements-borderColor',
+                  styles.GlassCard,
+                )}
+              >
                 <CodeMirrorEditor
                   theme={theme}
                   editable={!isStreaming && editorDocument !== undefined}
